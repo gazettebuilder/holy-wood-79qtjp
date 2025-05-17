@@ -63,13 +63,16 @@ const Header = () => {
           <div className="flex items-center space-x-4 md:hidden">
             <button 
               onClick={() => setSearchOpen(!searchOpen)}
-              className="text-gazette-cream"
+              className="text-gazette-cream p-2"
+              aria-label="Toggle search"
             >
               <FaSearch size={18} />
             </button>
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gazette-cream"
+              className="text-gazette-cream p-2"
+              aria-label="Toggle menu"
+              id="mobile-menu-button"
             >
               {mobileMenuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
