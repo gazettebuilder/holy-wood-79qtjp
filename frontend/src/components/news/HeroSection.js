@@ -118,15 +118,15 @@ const HeroSection = ({ featuredArticles }) => {
         </div>
         
         {/* Indicator dots */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
           {featuredArticles.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`w-2 h-2 rounded-full transition-all ${
                 index === activeIndex 
-                  ? 'bg-gazette-red w-4' 
-                  : 'bg-gazette-cream/50 hover:bg-gazette-cream/80'
+                  ? 'bg-gazette-red w-6' 
+                  : 'bg-gazette-cream hover:bg-gazette-cream/80'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
