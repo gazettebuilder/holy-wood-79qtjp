@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
@@ -19,10 +19,10 @@ const NewsletterSignup = () => {
       setStatus('success');
       setEmail('');
       
-      // Reset after 3 seconds
+      // Reset after 5 seconds
       setTimeout(() => {
         setStatus('');
-      }, 3000);
+      }, 5000);
     }, 1500);
   };
 
@@ -56,57 +56,71 @@ const NewsletterSignup = () => {
             Join our community of informed readers.
           </motion.p>
           
-          <motion.form 
-            onSubmit={handleSubmit}
-            className="max-w-md mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <div className="relative">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                className={`w-full bg-gazette-light/10 border-2 ${
-                  status === 'error' ? 'border-red-500' : 'border-gazette-gold/30'
-                } rounded-md px-4 py-3 focus:outline-none focus:border-gazette-gold text-gazette-cream`}
-                disabled={status === 'loading' || status === 'success'}
-              />
-              <button
-                type="submit"
-                className={`absolute right-0 top-0 h-full px-4 rounded-r-md flex items-center justify-center ${
-                  status === 'loading' ? 'bg-gazette-navy' :
-                  status === 'success' ? 'bg-green-600' :
-                  status === 'error' ? 'bg-red-600' : 'bg-gazette-red'
-                } text-gazette-cream transition-colors duration-300`}
-                disabled={status === 'loading' || status === 'success'}
-              >
-                {status === 'loading' ? (
-                  <div className="w-5 h-5 border-2 border-gazette-cream border-t-transparent rounded-full animate-spin"></div>
-                ) : status === 'success' ? (
-                  <span className="text-sm font-bold">THANK YOU!</span>
-                ) : (
-                  <span className="flex items-center">
-                    <FaPaperPlane className="mr-2" size={14} />
-                    <span className="font-bold">SUBSCRIBE</span>
-                  </span>
-                )}
-              </button>
-            </div>
-            
-            {status === 'error' && (
-              <p className="text-red-400 text-sm mt-2 text-left">
-                Please enter a valid email address.
+          {status === 'success' ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-green-600/20 text-green-300 p-4 rounded-md border border-green-500/30 flex items-center justify-center mb-8"
+            >
+              <FaCheckCircle className="mr-2" size={24} />
+              <div>
+                <p className="font-bold">Thank you for subscribing!</p>
+                <p className="text-sm">We've sent a confirmation email to your inbox.</p>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.form 
+              onSubmit={handleSubmit}
+              className="max-w-md mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email address"
+                  className={`w-full bg-gazette-light/10 border-2 ${
+                    status === 'error' ? 'border-red-500' : 'border-gazette-gold/30'
+                  } rounded-md px-4 py-3 focus:outline-none focus:border-gazette-gold text-gazette-cream`}
+                  disabled={status === 'loading' || status === 'success'}
+                />
+                <button
+                  type="submit"
+                  className={`absolute right-0 top-0 h-full px-4 rounded-r-md flex items-center justify-center ${
+                    status === 'loading' ? 'bg-gazette-navy' :
+                    status === 'success' ? 'bg-green-600' :
+                    status === 'error' ? 'bg-red-600' : 'bg-gazette-red'
+                  } text-gazette-cream transition-colors duration-300`}
+                  disabled={status === 'loading' || status === 'success'}
+                >
+                  {status === 'loading' ? (
+                    <div className="w-5 h-5 border-2 border-gazette-cream border-t-transparent rounded-full animate-spin"></div>
+                  ) : status === 'success' ? (
+                    <span className="text-sm font-bold">THANK YOU!</span>
+                  ) : (
+                    <span className="flex items-center">
+                      <FaPaperPlane className="mr-2" size={14} />
+                      <span className="font-bold">SUBSCRIBE</span>
+                    </span>
+                  )}
+                </button>
+              </div>
+              
+              {status === 'error' && (
+                <p className="text-red-400 text-sm mt-2 text-left">
+                  Please enter a valid email address.
+                </p>
+              )}
+              
+              <p className="text-gazette-cream/60 text-xs mt-3 text-center">
+                By subscribing, you agree to our Privacy Policy and consent to receive news from The Crewkerne Gazette.
               </p>
-            )}
-            
-            <p className="text-gazette-cream/60 text-xs mt-3 text-center">
-              By subscribing, you agree to our Privacy Policy and consent to receive news from The Crewkerne Gazette.
-            </p>
-          </motion.form>
+            </motion.form>
+          )}
         </div>
       </div>
     </section>
