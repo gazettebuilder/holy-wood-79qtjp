@@ -40,7 +40,7 @@ body {
   }
   
   .vintage-button {
-    @apply px-5 py-2 bg-gazette-red text-gazette-cream font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-gazette-navy hover:shadow-md;
+    @apply px-5 py-2 bg-gazette-red text-gazette-cream font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-gazette-navy hover:shadow-md rounded-sm border border-gazette-red hover:border-gazette-navy;
   }
   
   .section-title {
